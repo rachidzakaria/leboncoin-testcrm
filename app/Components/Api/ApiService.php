@@ -19,6 +19,7 @@ class ApiService
     public function __construct()
     {
         $this->inputs();
+        $this->request = $_POST;
     }
 
     /**
@@ -87,6 +88,19 @@ class ApiService
     }
 
     /**
+     * Check palindrome
+     */
+    public function checkPalindrome($name)
+    {
+        if (strrev($name) == $name){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+
+    /**
      * @param $data
      * @param $status
      */
@@ -104,7 +118,7 @@ class ApiService
     private function setHeader()
     {
         header("HTTP/1.1 " . $this->code . " " . $this->getStatusMessage());
-        header("Content-Type:" . $this->_content_type);
+        header("Content-Type:" . $this->content_type);
     }
 
     /**

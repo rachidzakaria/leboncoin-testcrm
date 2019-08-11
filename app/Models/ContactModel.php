@@ -17,7 +17,7 @@ class ContactModel extends AbstractModel
     {
         parent::__construct($database);
 
-        $this->model = new AbstractModel();
+     //   $this->model = new AbstractModel();
     }
 
     /**
@@ -29,5 +29,27 @@ class ContactModel extends AbstractModel
     public function getContactByUser($idUser)
     {
         return $this->query("SELECT * FROM {$this->table} WHERE userId = $idUser");
+    }
+
+    /**
+     * Méthode de récupération d'un contact
+     * @param $idContact
+     *
+     * @return array|bool|mixed|\PDOStatement
+     */
+    public function getContact($idContact)
+    {
+        return $this->query("SELECT * FROM {$this->table} WHERE id = $idContact");
+    }
+
+    /**
+     * Méthode de modification d'un contact
+     * @param $data
+     *
+     * @return array|bool|mixed|\PDOStatement
+     */
+    public function setContact($data)
+    {
+        return $this->query("UPDATE {$this->table} SET nom = '{$data['nom']}',prenom = '{$data['prenom']}',email = '{$data['email']}' WHERE id = {$data['id']}");
     }
 }

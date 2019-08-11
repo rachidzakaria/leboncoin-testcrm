@@ -40,7 +40,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/index.php?p=contact.index">Accueil <span class="sr-only"></span></a>
+                    <a class="nav-link" href="./index.php?p=contact.index">Accueil <span class="sr-only"></span></a>
                 </li>
             </ul>
         </div>
@@ -84,9 +84,10 @@
             $('#progress').show();
             $.ajax({
                 type: 'POST',
-                url: 'http://leboncoin.local/email',
+                url: 'http://localhost/testTechnique/index.php?p=contact.check',
                 data: {
-                    'email': $('#email').val()
+                    'email': $('#email').val(),
+                    'request': 'email'
                 },
                 success: function (res) {
                     $('#progress').hide();

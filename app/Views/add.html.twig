@@ -18,14 +18,14 @@
                         <div class="form-group  col-md-6">
                             <div class="form-group row">
                                 <label class="control-label col-sm-2">Nom</label>
-                                <input type="text" name="nom" id="nom" value="{{ data.nom }}"
+                                <input type="text" name="nom" id="nom" value="{{ data[0].nom }}"
                                        class="form-control col-sm-10 capitalize" />
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <div class="form-group row">
                                 <label class="control-label col-sm-2">Prenom</label>
-                                <input type="text" name="prenom" id="prenom" value="{{ data.prenom }}"
+                                <input type="text" name="prenom" id="prenom" value="{{ data[0].prenom }}"
                                        class="form-control col-sm-10 capitalize" autocomplete="off"/>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                         <div class="form-group col-md-6">
                             <div class="form-group row">
                                 <label class="control-label col-sm-2">Email</label>
-                                <input type="text" id="email" name="email" value="{{ data.email }}"
+                                <input type="text" id="email" name="email" value="{{ data[0].email }}"
                                        class="form-control col-sm-10" autocomplete="off" onkeyup="this.value = this.value.toLowerCase();"/>
                             </div>
                         </div>

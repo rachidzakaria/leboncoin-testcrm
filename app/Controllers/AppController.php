@@ -2,8 +2,9 @@
 
 namespace App\Controllers;
 
+use App;
 use App\Controllers\MainController;
-use Components\Auth\auth;
+use App\Components\Auth\Auth;
 
 class AppController extends MainController
 {
@@ -27,7 +28,7 @@ class AppController extends MainController
     protected function forbidden()
     {
         header('HTTP/1.0 403 Forbidden');
-        header('Location: index.php?p=user.login');
+        header('Location: ./index.php?p=user.login');
     }
 
     /**

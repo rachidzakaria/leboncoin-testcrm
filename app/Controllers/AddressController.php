@@ -3,8 +3,10 @@
 namespace App\Controllers;
 
 use App\Controllers\ControllerInterface;
+use Exception;
+use InvalidArgumentException;
 
-class AddressController extends MainController implements ControllerInterface
+class AddressController extends AppController implements ControllerInterface
 {
     /**
      * AddressController constructor.
@@ -57,7 +59,7 @@ class AddressController extends MainController implements ControllerInterface
                 ]);
 
                 if ($result) {
-                    header("Location: /index.php?p=address.index&id=$idContact");
+                    header("Location: ?p=address.index&id=$idContact");
                 } else {
                     $error = true;
                     $this->twig->render('addressadd.html.twig',
@@ -75,6 +77,12 @@ class AddressController extends MainController implements ControllerInterface
     }
 
     /**
+     * Methode pour page de creation
+     */
+    public function create()
+    {}
+
+    /**
      * Modification d'une adresse d'un contact
      */
     public function edit()
@@ -83,7 +91,6 @@ class AddressController extends MainController implements ControllerInterface
         $id = intval($_GET['id']);
         if (!empty($_POST)) {
             $response = $this->sanitize($_POST);
-
 
             if ($response["response"]) {
                 $addresse = $this->Addresse->findById($id);
@@ -96,7 +103,7 @@ class AddressController extends MainController implements ControllerInterface
                         'street'     => $response['street'],
                     ]);
                 if ($result) {
-                    header("Location: /index.php?p=address.index&id=$addresse->idContact");
+                    header("Location: index.php?p=address.index&id=$addresse->idContact");
                 } else {
                     $error = true;
                     $this->twig->render('addressadd.html.twig',
@@ -113,7 +120,7 @@ class AddressController extends MainController implements ControllerInterface
         }
 
         $data = $this->Addresse->findById($id);
-        echo $this->twig->render('addressadd.html.twig',
+        echo $this->twig->render('addressedit.html.twig',
             [
                 'data'      => $data,
                 "idContact" => $data->idContact
@@ -125,23 +132,27 @@ class AddressController extends MainController implements ControllerInterface
      */
     public function delete()
     {
-       //@todo
+        $addresse = $this->Addresse->findById($_GET['id']);
+        $result = $this->Addresse->delete($_GET['id']);
+        if ($result) {
+            header("Location: index.php?p=address.index&id=$addresse->idContact");
+        }
     }
 
 
     /**
-     * Vérifie les contrainte d'enregistrement
-     *
      * @param array $data
-     *
      * @return array
+     * @throws Exception
+     * @throws InvalidArgumentException
      */
-    public function sanitize($data = [])
+    public function sanitize(array $data = []): array
     {
         $number     = $_POST['number'];
         $city       = strtoupper($_POST['city']);
         $country    = strtoupper($_POST['country']);
         $street     = strtoupper($_POST['street']);
+        $postalCode     = strtoupper($_POST['postalCode']);
         $idContact  = intval($_POST['idContact']);
 
         if ($number && $city && $country && $postalCode && $street

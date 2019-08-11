@@ -30,6 +30,18 @@ class AddresseModel extends AbstractModel
     }
 
     /**
+     * Méthode de modification d'une adresse
+     * @param $id
+     * @param $data
+     *
+     * @return array|bool|mixed|\PDOStatement
+     */
+    public function update($id,$data)
+    {
+        return $this->query("UPDATE {$this->table} SET number = '{$data['number']}',city = '{$data['city']}',country = '{$data['country']}',postalCode = '{$data['postalCode']}',street = '{$data['street']}' WHERE id = {$id}");
+    }
+
+    /**
      * Méthode de récupération d'une adresse à partir de don Id
      * @param $idAdresse
      *

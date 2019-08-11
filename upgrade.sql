@@ -22,6 +22,8 @@ CREATE TABLE IF NOT EXISTS `contacts` (
   KEY `userId` (`userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE INDEX `IX_CONTACTS` ON `contacts` (`nom`, `prenom`);
+
 -- Sql - table addresses
 
 DROP TABLE IF EXISTS `addresses`;

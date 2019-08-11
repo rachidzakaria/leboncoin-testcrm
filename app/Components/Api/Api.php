@@ -15,10 +15,9 @@ class Api extends ApiService
         }
 
         $name = $this->request['name'];
-        $palindrome->setName($name);
 
         if ($name) {
-            if ($palindrome->is_valid()) {
+            if ($this->checkPalindrome($name)) {
                 $this->response($this->json(["response" => true]), 200);
             } else {
                 $this->response($this->json(["response" => false]), 200);
@@ -34,7 +33,7 @@ class Api extends ApiService
         if ($this->getRequestMethod() != "POST") {
             $this->response('', 406);
         }
-        $email = $this->_request['email'];
+        $email = $this->request['email'];
         if ($email) {
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $this->response($this->json([

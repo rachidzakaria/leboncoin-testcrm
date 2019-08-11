@@ -33,13 +33,12 @@ class MainController
     }
 
     /**
-     * @param $methode
      * @param array $datas
      * @return mixed
      */
-    public function apiClient($methode, $datas = [])
+    public function apiClient($datas = [])
     {
-        $api = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . $methode;
+        $api = $_SERVER['HTTP_HOST'] . '/testTechnique/index.php?p=contact.check';
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $api);
         curl_setopt($curl, CURLOPT_POST, true);

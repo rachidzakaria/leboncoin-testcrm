@@ -31,9 +31,9 @@
                     <td>{{ addresse.city|e }}</td>
                     <td>{{ addresse.country|e }}</td>
                     <td class="text-center">
-                        <a class='btn btn-info btn-xs' href="/index.php?p=address.edit&id={{ addresse.id }}"><span
+                        <a class='btn btn-info btn-xs' href="?p=address.edit&id={{ addresse.id }}"><span
                                     class="glyphicon glyphicon-edit"></span> Edit</a>
-                        <a href="/address.delete/{{ addresse.id }}" class="btn btn-danger btn-xs"><span
+                        <a href="?p=address.delete&id={{ addresse.id }}" class="btn btn-danger btn-xs"><span
                                     class="glyphicon glyphicon-remove"></span> Del</a></td>
                 </tr>
             {% endfor %}
